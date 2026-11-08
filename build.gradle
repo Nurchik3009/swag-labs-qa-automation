@@ -84,17 +84,25 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add('-parameters')
 }
 
+
 test {
-        def selectedTags = System.getProperty('testTags', 'ALL')
-                .toLowerCase()
+    def selectedTags = System.getProperty('testTags', 'ALL')
+            .toLowerCase()
 
-        useJUnitPlatform {
-            if (selectedTags != 'all') {
-                includeTags(selectedTags)
-            }
+    useJUnitPlatform {
+        if (selectedTags != 'all') {
+            includeTags(selectedTags)
         }
+    }
 
-    // Выбор окружения
+    // Настройки запуска Web UI через Selenoid
+    systemProperty 'isRemote',
+            System.getProperty('isRemote', 'false')
+
+    systemProperty 'remoteUrl',
+            System.getProperty('remoteUrl', '')
+
+    // Настройки запуска мобильных тестов
     systemProperty 'deviceHost',
             System.getProperty('deviceHost', 'local')
 
