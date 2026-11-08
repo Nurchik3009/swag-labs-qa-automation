@@ -1,0 +1,128 @@
+
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '3.0.0'
+}
+
+group = 'guru.qa'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def restAssuredVersion = "5.5.0"
+def selenideVersion = "7.13.0"
+def allureVersion = "2.29.0"
+def junitVersion = "5.11.0"
+def appiumVersion = "10.0.0"
+def seleniumVersion = "4.39.0"
+def lombokVersion = "1.18.32"
+
+allure {
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.32.0")
+            }
+        }
+    }
+}
+
+dependencies {
+    // Lombok
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    // Mobile + Web UI
+    testImplementation "com.codeborne:selenide:$selenideVersion"
+
+    testImplementation("io.appium:java-client:$appiumVersion") {
+        exclude group: 'org.seleniumhq.selenium'
+    }
+
+    testImplementation "org.seleniumhq.selenium:selenium-api:$seleniumVersion"
+    testImplementation "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
+    testImplementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+
+    // API
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "io.rest-assured:json-schema-validator:$restAssuredVersion"
+
+    // Allure
+    testImplementation "io.qameta.allure:allure-selenide:$allureVersion"
+    testImplementation "io.qameta.allure:allure-rest-assured:$allureVersion"
+    testImplementation "io.qameta.allure:allure-junit5:$allureVersion"
+
+    // Testing
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testImplementation "org.assertj:assertj-core:3.27.7"
+
+    // Configuration
+    testImplementation "org.aeonbits.owner:owner:1.0.12"
+
+    // Utilities
+    testImplementation "net.datafaker:datafaker:2.5.4"
+    testImplementation "commons-io:commons-io:2.16.1"
+    testImplementation "org.freemarker:freemarker:2.3.32"
+    testImplementation "ch.qos.logback:logback-classic:1.5.6"
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.add('-parameters')
+}
+
+test {
+        def selectedTags = System.getProperty('testTags', 'ALL')
+                .toLowerCase()
+
+        useJUnitPlatform {
+            if (selectedTags != 'all') {
+                includeTags(selectedTags)
+            }
+        }
+
+    // Выбор окружения
+    systemProperty 'deviceHost',
+            System.getProperty('deviceHost', 'local')
+
+    systemProperty 'remote',
+            System.getProperty('remote', '')
+
+    // Кодировка
+    systemProperty 'file.encoding', 'UTF-8'
+
+    // BrowserStack credentials
+    systemProperty 'browserstack.user',
+            System.getenv('BROWSERSTACK_USERNAME') ?: ''
+
+    systemProperty 'browserstack.key',
+            System.getenv('BROWSERSTACK_ACCESS_KEY') ?: ''
+
+    // JVM arguments
+    jvmArgs(
+            '-Dfile.encoding=UTF-8',
+            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.security=ALL-UNNAMED',
+            '--add-opens', 'java.base/sun.security.ssl=ALL-UNNAMED',
+            '--add-opens', 'jdk.crypto.ec/sun.security.ec.ed=ALL-UNNAMED'
+    )
+
+    // Логирование тестов
+    testLogging {
+        events 'started', 'passed', 'skipped', 'failed'
+        exceptionFormat 'short'
+    }
+}
