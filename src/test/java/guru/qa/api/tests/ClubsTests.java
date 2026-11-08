@@ -8,6 +8,7 @@ import guru.qa.api.models.clubs.ClubPatchBodyModel;
 import guru.qa.api.models.clubs.ClubsListResponseModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -19,6 +20,7 @@ import static guru.qa.api.tests.TestData.*;
 
 @Feature("Клубы")
 @Story("CRUD /api/v1/clubs/")
+@Tag("api")
 public class ClubsTests extends TestBase {
 
     private String accessToken;
