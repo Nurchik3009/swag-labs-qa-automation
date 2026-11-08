@@ -11,6 +11,10 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BaseTest {
 
@@ -38,6 +42,7 @@ public class BaseTest {
         );
 
         if (isRemote) {
+
             if (remoteUrl == null || remoteUrl.isBlank()) {
                 throw new IllegalStateException(
                         "Remote URL is not configured!"
@@ -46,12 +51,31 @@ public class BaseTest {
 
             Configuration.remote = remoteUrl;
 
+            // Chrome configuration
+            ChromeOptions chromeOptions = new ChromeOptions();
+
+            // Selenoid configuration
+            Map<String, Object> selenoidOptions = new HashMap<>();
+            selenoidOptions.put("enableVNC", true);
+            selenoidOptions.put("enableVideo", true);
+            selenoidOptions.put("sessionTimeout", "2m");
+
+            chromeOptions.setCapability(
+                    "selenoid:options",
+                    selenoidOptions
+            );
+
+            Configuration.browserCapabilities = chromeOptions;
+
             System.out.println("================================");
             System.out.println("REMOTE BROWSER ENABLED");
             System.out.println("Remote URL: Selenoid");
+            System.out.println("Video recording: ENABLED");
+            System.out.println("VNC: ENABLED");
             System.out.println("================================");
 
         } else {
+
             Configuration.remote = null;
 
             System.out.println("================================");
@@ -80,29 +104,34 @@ public class BaseTest {
     void addAttachments() {
 
         try {
+
             if (Selenide.webdriver().driver().hasWebDriverStarted()) {
 
                 Attach.screenshotAs("Last screenshot");
                 Attach.pageSource();
                 Attach.browserConsoleLogs();
 
-                if (Boolean.parseBoolean(
+                boolean isRemote = Boolean.parseBoolean(
                         System.getProperty(
                                 "isRemote",
                                 String.valueOf(config.isRemote())
                         )
-                )) {
+                );
+
+                if (isRemote) {
                     Attach.addVideo();
                 }
             }
 
         } catch (Exception e) {
+
             System.err.println(
                     "Не удалось добавить вложения в Allure: "
                             + e.getMessage()
             );
 
         } finally {
+
             Selenide.closeWebDriver();
         }
     }
