@@ -25,9 +25,39 @@ public class BaseTest {
         Configuration.browserVersion = config.browserVersion();
         Configuration.browserSize = config.browserSize();
 
-        Configuration.remote = config.isRemote()
-                ? config.remoteUrl()
-                : null;
+        boolean isRemote = Boolean.parseBoolean(
+                System.getProperty(
+                        "isRemote",
+                        String.valueOf(config.isRemote())
+                )
+        );
+
+        String remoteUrl = System.getProperty(
+                "remoteUrl",
+                config.remoteUrl()
+        );
+
+        if (isRemote) {
+            if (remoteUrl == null || remoteUrl.isBlank()) {
+                throw new IllegalStateException(
+                        "Remote URL is not configured!"
+                );
+            }
+
+            Configuration.remote = remoteUrl;
+
+            System.out.println("================================");
+            System.out.println("REMOTE BROWSER ENABLED");
+            System.out.println("Remote URL: Selenoid");
+            System.out.println("================================");
+
+        } else {
+            Configuration.remote = null;
+
+            System.out.println("================================");
+            System.out.println("LOCAL BROWSER ENABLED");
+            System.out.println("================================");
+        }
 
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
@@ -56,7 +86,12 @@ public class BaseTest {
                 Attach.pageSource();
                 Attach.browserConsoleLogs();
 
-                if (config.isRemote()) {
+                if (Boolean.parseBoolean(
+                        System.getProperty(
+                                "isRemote",
+                                String.valueOf(config.isRemote())
+                        )
+                )) {
                     Attach.addVideo();
                 }
             }
