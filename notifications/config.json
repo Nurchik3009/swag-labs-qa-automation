@@ -1,0 +1,22 @@
+{
+  "base": {
+    "project": "Swag Labs QA Automation — UI / API / Mobile",
+    "environment": "QA",
+    "comment": "Дипломный проект QA GURU | @AKaliakbarova",
+    "reportLink": "${BUILD_URL}",
+    "language": "ru",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "9108246431:AAGzPgb91ZUV0g9rqrt3EXwXxvGhrAXOtgA",
+    "chat": "848405839",
+    "replyTo": "",
+    "templatePath": "notifications/telegram.ftl"
+  },
+  "proxy": {
+    "type": "socks5",
+    "host": "proxy.qaguru.school",
+    "port": 7777
+  }
+}
