@@ -90,7 +90,11 @@ test {
             .toLowerCase()
 
     useJUnitPlatform {
-        if (selectedTags != 'all') {
+        if (selectedTags == 'all') {
+            // Общий запуск: исключаем ручные тесты
+            excludeTags('manual')
+        } else {
+            // Запуск конкретной категории тестов
             includeTags(selectedTags)
         }
     }
