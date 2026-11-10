@@ -1,4 +1,4 @@
-<b>Swag Labs QA Automation — UI / API / Mobile>
+<b>Swag Labs QA Automation — UI / API / Mobile</b>
 
 <b>Результаты:</b>
 Рабочее окружение: ${environment}
