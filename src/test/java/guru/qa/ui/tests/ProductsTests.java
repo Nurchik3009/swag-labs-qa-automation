@@ -1,4 +1,3 @@
-
 package guru.qa.ui.tests;
 
 import guru.qa.ui.BaseTest;
@@ -15,8 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.step;
-
 @Epic("UI Automation")
 @Feature("Products catalog")
 @Owner("Ainur Kaliakbarova")
@@ -31,21 +28,9 @@ public class ProductsTests extends BaseTest {
     @DisplayName("Успешное отображение каталога товаров")
     @Severity(SeverityLevel.CRITICAL)
     void productsPageDisplayedTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Проверить заголовок каталога", () -> {
-            productsPage.checkTitle(TestData.PRODUCTS_PAGE_TITLE);
-        });
-
-        step("Проверить количество отображаемых товаров", () -> {
-            productsPage.checkProductsCount(TestData.EXPECTED_PRODUCTS_COUNT);
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.checkTitle(TestData.PRODUCTS_PAGE_TITLE)
+                .checkProductsCount(TestData.EXPECTED_PRODUCTS_COUNT);
     }
 
     @Test
@@ -53,22 +38,8 @@ public class ProductsTests extends BaseTest {
     @DisplayName("Сортировка товаров по возрастанию цены")
     @Severity(SeverityLevel.NORMAL)
     void sortProductsByPriceTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Выбрать сортировку товаров по возрастанию цены", () -> {
-            productsPage.sortProductsByPriceLowToHigh();
-        });
-
-        step("Проверить, что первым отображается самый дешёвый товар", () -> {
-            productsPage.checkFirstProductPrice(
-                    TestData.CHEAPEST_PRODUCT_PRICE
-            );
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.sortProductsByPriceLowToHigh()
+                .checkFirstProductPrice(TestData.CHEAPEST_PRODUCT_PRICE);
     }
 }

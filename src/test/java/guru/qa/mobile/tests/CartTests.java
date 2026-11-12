@@ -1,8 +1,8 @@
 package guru.qa.mobile.tests;
 
 import guru.qa.mobile.BaseTest;
-import guru.qa.mobile.pages.LoginPage;
-import guru.qa.mobile.pages.ProductsPage;
+import guru.qa.mobile.screens.LoginScreen;
+import guru.qa.mobile.screens.ProductsScreen;
 import io.appium.java_client.AppiumBy;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,22 +16,22 @@ import static com.codeborne.selenide.Selenide.$;
 @Tag("mobile")
 public class CartTests extends BaseTest {
 
-    private LoginPage loginPage;
-    private ProductsPage productsPage;
+    private LoginScreen loginScreen;
+    private ProductsScreen productsScreen;
 
     @BeforeEach
     void setUp() {
-        loginPage = new LoginPage();
-        productsPage = new ProductsPage();
+        loginScreen = new LoginScreen();
+        productsScreen = new ProductsScreen();
     }
 
     @Test
     @DisplayName("Добавление товара в корзину")
     void addProductToCartTest() {
 
-        loginPage.login("standard_user", "secret_sauce");
+        loginScreen.login("standard_user", "secret_sauce");
 
-        productsPage.addBackpackToCart();
+        productsScreen.addBackpackToCart();
 
         checkCartBadge("1");
     }

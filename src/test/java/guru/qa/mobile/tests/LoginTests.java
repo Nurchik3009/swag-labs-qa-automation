@@ -1,7 +1,7 @@
 package guru.qa.mobile.tests;
 
 import guru.qa.mobile.BaseTest;
-import guru.qa.mobile.pages.LoginPage;
+import guru.qa.mobile.screens.LoginScreen;
 import io.appium.java_client.AppiumBy;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Tag("mobile")
 public class LoginTests extends BaseTest {
 
-    private LoginPage loginPage;
+    private LoginScreen loginScreen;
 
     @BeforeEach
     void setUp() {
-        loginPage = new LoginPage();
+        loginScreen = new LoginScreen();
     }
 
     @Test
     void successfulLoginTest() {
 
-        loginPage.login("standard_user", "secret_sauce");
+        loginScreen.login("standard_user", "secret_sauce");
 
         checkProductsPageIsVisible();
     }
@@ -40,9 +40,9 @@ public class LoginTests extends BaseTest {
     @Test
     void loginWithInvalidCredentialsTest() {
 
-        loginPage.login("standard_user", "wrong_password");
+        loginScreen.login("standard_user", "wrong_password");
 
-        String errorMessage = loginPage.getErrorMessage();
+        String errorMessage = loginScreen.getErrorMessage();
 
         checkAuthorizationError(errorMessage);
     }

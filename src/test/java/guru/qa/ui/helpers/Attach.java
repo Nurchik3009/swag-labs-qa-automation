@@ -1,4 +1,3 @@
-
 package guru.qa.ui.helpers;
 
 import com.codeborne.selenide.Selenide;
@@ -48,10 +47,6 @@ public class Attach {
     public static String addVideo() {
 
         String videoUrl = getVideoUrl().toString();
-
-        System.out.println("================================");
-        System.out.println("VIDEO URL: " + videoUrl);
-        System.out.println("================================");
 
         return "<html><body>" +
                 "<video width='100%' height='100%' controls autoplay>" +

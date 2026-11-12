@@ -1,4 +1,3 @@
-
 package guru.qa.ui.tests;
 
 import guru.qa.ui.BaseTest;
@@ -15,8 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.step;
-
 @Epic("UI Automation")
 @Feature("Authentication")
 @Owner("Ainur Kaliakbarova")
@@ -31,17 +28,8 @@ public class LoginTests extends BaseTest {
     @DisplayName("Успешная авторизация стандартного пользователя")
     @Severity(SeverityLevel.CRITICAL)
     void successfulLoginTest() {
-
-        step("Открыть страницу авторизации и выполнить вход", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Проверить успешную авторизацию и отображение каталога", () -> {
-            productsPage.checkTitle(TestData.PRODUCTS_PAGE_TITLE);
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.checkTitle(TestData.PRODUCTS_PAGE_TITLE);
     }
 
     @Test
@@ -49,19 +37,8 @@ public class LoginTests extends BaseTest {
     @DisplayName("Ошибка авторизации заблокированного пользователя")
     @Severity(SeverityLevel.CRITICAL)
     void lockedOutUserLoginTest() {
-
-        step("Попытаться войти под заблокированным пользователем", () -> {
-            loginPage.login(
-                    TestData.LOCKED_OUT_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Проверить сообщение о блокировке пользователя", () -> {
-            loginPage.checkErrorMessage(
-                    TestData.LOCKED_OUT_ERROR
-            );
-        });
+        loginPage.login(TestData.LOCKED_OUT_USER, TestData.PASSWORD)
+                .checkErrorMessage(TestData.LOCKED_OUT_ERROR);
     }
 
     @Test
@@ -69,19 +46,8 @@ public class LoginTests extends BaseTest {
     @DisplayName("Ошибка авторизации при вводе неверного пароля")
     @Severity(SeverityLevel.NORMAL)
     void invalidPasswordTest() {
-
-        step("Открыть страницу авторизации и ввести неверный пароль", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.INVALID_PASSWORD
-            );
-        });
-
-        step("Проверить сообщение об ошибке авторизации", () -> {
-            loginPage.checkErrorMessage(
-                    TestData.INVALID_CREDENTIALS_ERROR
-            );
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.INVALID_PASSWORD)
+                .checkErrorMessage(TestData.INVALID_CREDENTIALS_ERROR);
     }
 
     @Test
@@ -89,21 +55,8 @@ public class LoginTests extends BaseTest {
     @DisplayName("Успешный выход пользователя из системы")
     @Severity(SeverityLevel.NORMAL)
     void logoutTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Выполнить выход из аккаунта", () -> {
-            productsPage.logout()
-                    .checkLoginPageDisplayed();
-        });
-
-        step("Проверить возврат на страницу авторизации", () -> {
-            loginPage.checkLoginPageDisplayed();
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.logout()
+                .checkLoginPageDisplayed();
     }
 }

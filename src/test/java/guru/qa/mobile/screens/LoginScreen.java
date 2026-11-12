@@ -1,5 +1,4 @@
-
-package guru.qa.mobile.pages;
+package guru.qa.mobile.screens;
 
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumBy;
@@ -7,7 +6,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class LoginPage {
+public class LoginScreen {
 
     private final SelenideElement usernameInput =
             $(AppiumBy.accessibilityId("test-Username"));
@@ -21,32 +20,30 @@ public class LoginPage {
     private final SelenideElement errorMessage =
             $(AppiumBy.accessibilityId("test-Error message"));
 
-    @Step("Вводим логин: {username}")
-    public LoginPage enterUsername(String username) {
+    // Без @Step, так как это атомарное действие внутри общего шага
+    public LoginScreen enterUsername(String username) {
         usernameInput.click();
         usernameInput.sendKeys(username);
         return this;
     }
 
-    @Step("Вводим пароль")
-    public LoginPage enterPassword(String password) {
+    public LoginScreen enterPassword(String password) {
         passwordInput.click();
         passwordInput.sendKeys(password);
         return this;
     }
 
-    @Step("Нажимаем кнопку Login")
-    public LoginPage clickLoginButton() {
+    public LoginScreen clickLoginButton() {
         loginButton.click();
         return this;
     }
 
-    @Step("Получаем сообщение об ошибке авторизации")
     public String getErrorMessage() {
         return errorMessage.$("android.widget.TextView").getText();
     }
 
-    @Step("Выполняем авторизацию пользователя")
+    // Единственный шаг-обёртка для логина
+    @Step("Авторизоваться пользователем: {username}")
     public void login(String username, String password) {
         enterUsername(username);
         enterPassword(password);

@@ -1,4 +1,3 @@
-
 package guru.qa.ui.tests;
 
 import guru.qa.ui.BaseTest;
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.step;
-
 @Epic("UI Automation")
 @Feature("Shopping cart and checkout")
 @Owner("Ainur Kaliakbarova")
@@ -35,31 +32,11 @@ public class CartTests extends BaseTest {
     @DisplayName("Добавление товара в корзину")
     @Severity(SeverityLevel.CRITICAL)
     void addProductToCartTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Добавить товар в корзину", () -> {
-            productsPage.addBackpackToCart();
-        });
-
-        step("Проверить счетчик товаров в корзине", () -> {
-            productsPage.checkCartBadge(
-                    TestData.ONE_PRODUCT_IN_CART
-            );
-        });
-
-        step("Открыть корзину и проверить добавленный товар", () -> {
-            productsPage.openCart();
-
-            cartPage.checkItemInCart(
-                    TestData.BACKPACK_NAME
-            );
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.addBackpackToCart()
+                .checkCartBadge(TestData.ONE_PRODUCT_IN_CART)
+                .openCart();
+        cartPage.checkItemInCart(TestData.BACKPACK_NAME);
     }
 
     @Test
@@ -67,29 +44,11 @@ public class CartTests extends BaseTest {
     @DisplayName("Удаление товара из корзины")
     @Severity(SeverityLevel.NORMAL)
     void removeProductFromCartTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
-
-        step("Добавить товар в корзину", () -> {
-            productsPage.addBackpackToCart();
-        });
-
-        step("Открыть корзину", () -> {
-            productsPage.openCart();
-        });
-
-        step("Удалить товар из корзины", () -> {
-            cartPage.removeBackpackFromCart();
-        });
-
-        step("Проверить, что корзина пуста", () -> {
-            cartPage.checkCartIsEmpty();
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
+        productsPage.addBackpackToCart()
+                .openCart();
+        cartPage.removeBackpackFromCart()
+                .checkCartIsEmpty();
     }
 
     @Test
@@ -97,13 +56,7 @@ public class CartTests extends BaseTest {
     @DisplayName("Полный цикл покупки товара (Checkout Flow)")
     @Severity(SeverityLevel.BLOCKER)
     void successfulCheckoutFlowTest() {
-
-        step("Авторизоваться в системе", () -> {
-            loginPage.login(
-                    TestData.STANDARD_USER,
-                    TestData.PASSWORD
-            );
-        });
+        loginPage.login(TestData.STANDARD_USER, TestData.PASSWORD);
 
         productsPage.checkTitle(TestData.PRODUCTS_PAGE_TITLE)
                 .addBackpackToCart()

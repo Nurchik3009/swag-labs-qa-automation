@@ -1,4 +1,3 @@
-
 package guru.qa.ui;
 
 import com.codeborne.selenide.Configuration;
@@ -51,10 +50,8 @@ public class BaseTest {
 
             Configuration.remote = remoteUrl;
 
-            // Chrome configuration
             ChromeOptions chromeOptions = new ChromeOptions();
 
-            // Selenoid configuration
             Map<String, Object> selenoidOptions = new HashMap<>();
             selenoidOptions.put("enableVNC", true);
             selenoidOptions.put("enableVideo", true);
@@ -67,20 +64,8 @@ public class BaseTest {
 
             Configuration.browserCapabilities = chromeOptions;
 
-            System.out.println("================================");
-            System.out.println("REMOTE BROWSER ENABLED");
-            System.out.println("Remote URL: Selenoid");
-            System.out.println("Video recording: ENABLED");
-            System.out.println("VNC: ENABLED");
-            System.out.println("================================");
-
         } else {
-
             Configuration.remote = null;
-
-            System.out.println("================================");
-            System.out.println("LOCAL BROWSER ENABLED");
-            System.out.println("================================");
         }
 
         Configuration.pageLoadStrategy = "eager";
