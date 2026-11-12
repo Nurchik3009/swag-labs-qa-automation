@@ -52,13 +52,123 @@
 👉 [Перейти к документации Manual](./docs/manual/README.md)
 
 ---
+<a id="structure"></a>
+<h2 align="center">📂 Структура проекта</h2>
+
+```text
+swag-labs-qa-automation/
+├── .gradle/
+├── .idea/
+├── build/
+├── docs/
+│   ├── api/
+│   │   ├── images/
+│   │   └── README.md
+│   ├── images/
+│   ├── manual/
+│   │   ├── images/
+│   │   └── README.md
+│   ├── mobile/
+│   │   ├── images/
+│   │   └── README.md
+│   └── ui/
+│       └── README.md
+├── src/
+│   └── test/
+│       ├── java/
+│       │   └── guru/
+│       │       └── qa/
+│       │           ├── allure/
+│       │           │   └── CustomAllureListener.java
+│       │           ├── api/
+│       │           │   ├── api/
+│       │           │   │   ├── ApiClient.java
+│       │           │   │   ├── AuthApiClient.java
+│       │           │   │   └── ClubsApiClient.java
+│       │           │   ├── config/
+│       │           │   │   └── ApiConfig.java
+│       │           │   ├── models.clubs/
+│       │           │   │   ├── ClubBodyModel.java
+│       │           │   │   ├── ClubModel.java
+│       │           │   │   ├── ClubPatchBodyModel.java
+│       │           │   │   ├── ClubReviewModel.java
+│       │           │   │   ├── ClubReviewUserModel.java
+│       │           │   │   └── ClubsListResponseModel.java
+│       │           │   ├── specs/
+│       │           │   │   └── clubs/
+│       │           │   │       └── ClubsSpec.java
+│       │           │   ├── BaseSpec.java
+│       │           │   ├── TestBase.java
+│       │           │   └── TestData.java
+│       │           ├── manual/
+│       │           │   └── ManualTests.java
+│       │           ├── mobile/
+│       │           │   ├── config/
+│       │           │   │   ├── BrowserstackConfig.java
+│       │           │   │   ├── LocalConfig.java
+│       │           │   │   └── MobileConfig.java
+│       │           │   ├── drivers/
+│       │           │   │   ├── BrowserstackMobileDriver.java
+│       │           │   │   └── LocalMobileDriver.java
+│       │           │   ├── helpers/
+│       │           │   │   ├── AndroidHelpers.java
+│       │           │   │   └── Attach.java
+│       │           │   ├── pages/
+│       │           │   │   ├── LoginPage.java
+│       │           │   │   └── ProductsPage.java
+│       │           │   ├── tests/
+│       │           │   │   ├── CartTests.java
+│       │           │   │   └── LoginTests.java
+│       │           │   └── BaseTest.java
+│       │           └── ui/
+│       │               ├── config/
+│       │               │   └── WebConfig.java
+│       │               ├── helpers/
+│       │               │   └── Attach.java
+│       │               ├── pages/
+│       │               │   ├── CartPage.java
+│       │               │   ├── CheckoutPage.java
+│       │               │   ├── LoginPage.java
+│       │               │   └── ProductsPage.java
+│       │               ├── tests/
+│       │               │   ├── CartTests.java
+│       │               │   ├── LoginTests.java
+│       │               │   └── ProductsTests.java
+│       │               ├── BaseTest.java
+│       │               └── TestData.java
+│       └── resources/
+│           ├── allure/
+│           │   └── allure.properties
+│           ├── apps/
+│           │   └── Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
+│           ├── config/
+│           │   ├── mobile/
+│           │   │   ├── browserstack.properties
+│           │   │   └── local.properties
+│           │   └── web/
+│           │       └── web.properties
+│           ├── schemas.clubs/
+│           │   ├── club_response_schema.json
+│           │   └── clubs_list_response_schema.json
+│           └── tpl/
+│               ├── request.ftl
+│               └── response.ftl
+├── .gitignore
+├── build.gradle
+├── gradlew
+├── gradlew.bat
+├── README.md
+└── settings.gradle
+```
+---
+
 <a id="jenkins"></a>
 <h2 align="center">⚙️ Запуск тестов через Jenkins</h2>
 
 Для комплексного запуска всех видов тестов в CI/CD используется проект в Jenkins: [ainur_diplom](https://jenkins.qa.guru/job/ainur_diplom/)
 
 ### Параметры сборки:
-Для запуска полного прогона всех автотестов выбирается параметры:  
+Для запуска полного прогона всех автотестов выбирается параметры:
 - `TEST_TYPE = ALL`
 - `REMOTE_URL = https://user1:1234@selenoid.qa.guru/wd/hub`
 - `DEVICE_HOST = browserstack`
@@ -134,3 +244,8 @@
 <br>
 
 <p align="center">Разработано в рамках дипломного проекта QA.GURU | Автор: <b>Ainur Kaliakbarova</b> (@AKaliakbarova)</p>
+
+<p align="right"><a href="#readme-top">⬆️ наверх</a></p>
+
+---
+
