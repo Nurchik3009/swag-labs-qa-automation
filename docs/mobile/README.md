@@ -71,9 +71,9 @@ swag-labs-qa-automation/
                         ├── helpers/
                         │   ├── AndroidHelpers.helpers        # Помощники Android
                         │   └── Attach.java                   # Вложения Allure
-                        ├── pages/
-                        │   ├── LoginPage.java          # Страница авторизации
-                        │   └── ProductsPage.java       # Каталог товаров
+                        ├── screens/
+                        │   ├── LoginScreens.java          # Страница авторизации
+                        │   └── ProductsScreens.java       # Каталог товаров
                         ├── tests/
                         │   ├── CartTests.java          # Тесты корзины
                         │   └── LoginTests.java         # Тесты авторизации
@@ -135,7 +135,7 @@ swag-labs-qa-automation/
 ## 📊 [Allure-отчет](https://jenkins.qa.guru/job/ainur_diplom/69/allure/)
 ### Основная страница отчета
 <p align="center">
-  <img src="./images/mobile-allure-overview.png.png" alt="Allure Overview" width="850px"/>
+  <img src="./images/mobile-allure-overview.png" alt="Allure Overview" width="850px"/>
 </p>
 
 ### Тест-кейсы

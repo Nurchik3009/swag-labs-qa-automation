@@ -35,12 +35,6 @@
 
 ---
 
-### 🔌 API Automation &nbsp;&nbsp;&nbsp;&nbsp; `Rest Assured · Java`
-Тестирование REST API сервиса клубов: CRUD-операции, авторизация, валидация и обработка ошибок.  
-👉 [Перейти к документации API](./docs/api/README.md)
-
----
-
 ### 📱 Mobile Automation &nbsp;&nbsp;&nbsp;&nbsp; `Appium · BrowserStack`
 Автоматизация Android-приложения Swag Labs на локальном эмуляторе и в облаке.  
 👉 [Перейти к документации Mobile](./docs/mobile/README.md)
@@ -61,9 +55,6 @@ swag-labs-qa-automation/
 ├── .idea/
 ├── build/
 ├── docs/
-│   ├── api/
-│   │   ├── images/
-│   │   └── README.md
 │   ├── images/
 │   ├── manual/
 │   │   ├── images/
@@ -79,27 +70,7 @@ swag-labs-qa-automation/
 │       │   └── guru/
 │       │       └── qa/
 │       │           ├── allure/
-│       │           │   └── CustomAllureListener.java
-│       │           ├── api/
-│       │           │   ├── api/
-│       │           │   │   ├── ApiClient.java
-│       │           │   │   ├── AuthApiClient.java
-│       │           │   │   └── ClubsApiClient.java
-│       │           │   ├── config/
-│       │           │   │   └── ApiConfig.java
-│       │           │   ├── models.clubs/
-│       │           │   │   ├── ClubBodyModel.java
-│       │           │   │   ├── ClubModel.java
-│       │           │   │   ├── ClubPatchBodyModel.java
-│       │           │   │   ├── ClubReviewModel.java
-│       │           │   │   ├── ClubReviewUserModel.java
-│       │           │   │   └── ClubsListResponseModel.java
-│       │           │   ├── specs/
-│       │           │   │   └── clubs/
-│       │           │   │       └── ClubsSpec.java
-│       │           │   ├── BaseSpec.java
-│       │           │   ├── TestBase.java
-│       │           │   └── TestData.java
+│       │           │   └── CustomAllureListener.java   
 │       │           ├── manual/
 │       │           │   └── ManualTests.java
 │       │           ├── mobile/
@@ -113,9 +84,9 @@ swag-labs-qa-automation/
 │       │           │   ├── helpers/
 │       │           │   │   ├── AndroidHelpers.java
 │       │           │   │   └── Attach.java
-│       │           │   ├── pages/
-│       │           │   │   ├── LoginPage.java
-│       │           │   │   └── ProductsPage.java
+│       │           │   ├── screens/
+│       │           │   │   ├── LoginScreens.java
+│       │           │   │   └── ProductsScreens.java
 │       │           │   ├── tests/
 │       │           │   │   ├── CartTests.java
 │       │           │   │   └── LoginTests.java
@@ -147,9 +118,6 @@ swag-labs-qa-automation/
 │           │   │   └── local.properties
 │           │   └── web/
 │           │       └── web.properties
-│           ├── schemas.clubs/
-│           │   ├── club_response_schema.json
-│           │   └── clubs_list_response_schema.json
 │           └── tpl/
 │               ├── request.ftl
 │               └── response.ftl
