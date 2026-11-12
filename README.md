@@ -167,7 +167,7 @@ swag-labs-qa-automation/
 
 #### Тест-кейсы
 <p align="center">
-  <img src="./docs/images/allure-all-test-cases.png" alt="Allure Test Cases All" width="850px"/>
+  <img src="./docs/images/allure-all-test-cases_2.png" alt="Allure Test Cases All" width="850px"/>
 </p>
 
 
