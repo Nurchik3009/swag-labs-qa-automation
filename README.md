@@ -162,7 +162,7 @@ swag-labs-qa-automation/
 
 #### Основная страница отчета
 <p align="center">
-  <img src="./docs/images/allure-all-overview.png" alt="Allure Overview All Tests" width="850px"/>
+  <img src="./docs/images/allure-all-overview_2.png" alt="Allure Overview All Tests" width="850px"/>
 </p>
 
 #### Тест-кейсы
