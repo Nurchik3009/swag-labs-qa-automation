@@ -165,7 +165,7 @@ Markdown
 
 ### Тест-кейсы
 <p align="center">
-  <img src="./docs/ui/images/Test_cases.png" alt="Allure Test Details" width="850px"/>
+  <img src="./images/Test_cases.png" alt="Allure Test Details" width="850px"/>
 </p>
 
 ### Шаги выполнения 
