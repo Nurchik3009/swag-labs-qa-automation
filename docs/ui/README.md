@@ -157,7 +157,7 @@ Markdown
 <a id="allure"></a>
 
 <a id="allure"></a>
-## <img alt="Allure" height="30" src="./images/logo.png" width="60"/> [Allure-отчет](https://jenkins.qa.guru/job/ainur_diplom/69/allure/)
+## <img alt="Allure" height="30" src="./images/logo.png" width="60"/> [Allure-отчет](https://jenkins.qa.guru/job/ainur_diplom/53/allure/#)
 ### Основная страница отчета
 <p align="center">
   <img src="./images/ui-allure-overview.png" alt="Allure Overview" width="850px"/>
