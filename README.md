@@ -179,7 +179,7 @@ swag-labs-qa-automation/
 <a id="testops"></a>
 ## 📊 Просмотр результатов в Allure TestOps
 
-Все результаты комплексного тестирования автоматически синхронизируются с Allure TestOps. Детальный лаунч со всеми тест-кейсами доступен по [ссылке в Allure TestOps](https://allure.qa.guru/).
+Все результаты комплексного тестирования автоматически синхронизируются с Allure TestOps. Детальный лаунч со всеми тест-кейсами доступен по [ссылке в Allure TestOps](https://allure.qa.guru/launch/57205/tree).
 
 <p align="center">
   <img src="./docs/images/allure-testops-all-launch_2.png" alt="Allure TestOps Launch All" width="850px"/>
