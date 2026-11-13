@@ -20,7 +20,6 @@ public class LoginScreen {
     private final SelenideElement errorMessage =
             $(AppiumBy.accessibilityId("test-Error message"));
 
-    // Без @Step, так как это атомарное действие внутри общего шага
     public LoginScreen enterUsername(String username) {
         usernameInput.click();
         usernameInput.sendKeys(username);
@@ -42,7 +41,6 @@ public class LoginScreen {
         return errorMessage.$("android.widget.TextView").getText();
     }
 
-    // Единственный шаг-обёртка для логина
     @Step("Авторизоваться пользователем: {username}")
     public void login(String username, String password) {
         enterUsername(username);
