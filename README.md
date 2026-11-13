@@ -195,7 +195,7 @@ swag-labs-qa-automation/
 В процессе выполнения комплексной сборки в Jenkins настроена автоматическая отправка сводных нотификаций в Telegram-чат с общей статистикой по всем направлениям тестирования:
 
 <p align="center">
-  <img src="./docs/images/telegram-all-notification.png" alt="Telegram Notification All" width="450px"/>
+  <img src="docs/images/telegram-all-notification.png" alt="Telegram Notification All" width="450px"/>
 </p>
 
 <p align="right"><a href="#readme-top">⬆️ наверх</a></p>
